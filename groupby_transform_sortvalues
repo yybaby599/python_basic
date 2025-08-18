@@ -8,3 +8,7 @@ groupby不作为index ：, df.groupby('department'，as_index=False)
 
 sort values基本上也是只能保留第一个
 merge = merge.sort_values(['Department','salary'],ascending = [True,False]).drop_duplicates(subset ='Department',keep = 'first')
+
+merge= merge[merge['salary'] ==merge['Salary']]
+merge =merge[['Department','Employee','Salary']]
+学吧 学无止境
