@@ -9,3 +9,40 @@
 | `df.iloc[:, 0]`              | 基于位置，取出第 0 列   | `Series`    | 一维                 |
 | `df.iloc[:, [0]]`            | 基于位置，取出第 0 列   | `DataFrame` | 二维表格，只有一列          |
 | `df.iloc[:, [0,1]]`          | 基于位置，取出前两列     | `DataFrame` | 二维表格，含两列           |
+df.loc[0:5, 'col']  # 取第0到5行的 'col' 列
+df.loc[:, ['col1', 'col2']]  # 取所有行，但选多列
+mask = df['col'] > 10
+df.loc[mask, 'col']  # 只选择 'col' 列，且行满足 mask 条件
+mask 是一个布尔 Series，长度和 df 行数相同。
+df.loc[mask, 'col'] → 行用 mask 过滤，列用 'col' 指定。
+
+方法	用法	行/列如何选	举例
+loc	  df.loc[行标签, 列标签]	**按行名/列名（label）**选	df.loc[0:3, 'col'] → 选行标签从 0 到 3（包含 3）的 'col' 列
+iloc	df.iloc[行位置, 列位置]	**按行/列的位置（integer index）**选	df.iloc[0:3, 2] → 选前 3 行（不含第3行）第3列
+
+索引类型：
+
+loc → 用 行/列的名字（标签）
+
+iloc → 用 整数位置（从 0 开始计数）
+
+切片规则：
+
+loc → 闭区间，包括结束标签
+
+iloc → 半开区间，不包括结束位置
+
+可以混合条件：
+
+loc 可以用布尔数组（mask）过滤行
+
+iloc 只能用整数或整数列表/切片
+
+⚡ 举例对比：
+
+import pandas as pd
+
+df = pd.DataFrame({'A':[10,20,30], 'B':[40,50,60]}, index=['x','y','z'])
+
+df.loc['x':'y', 'A']   # x到y的行，包括y → 10, 20
+df.iloc[0:2, 0]        # 第0到1行的第0列，不包括2 → 10, 20
