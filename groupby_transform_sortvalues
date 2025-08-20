@@ -12,3 +12,10 @@ merge = merge.sort_values(['Department','salary'],ascending = [True,False]).drop
 merge= merge[merge['salary'] ==merge['Salary']]
 merge =merge[['Department','Employee','Salary']]
 学吧 学无止境
+
+drop_duplicates()
+只关心某些列时，可以用 subset; df.drop_duplicates(subset=["A"])
+df.drop_duplicates(subset=["A"], keep="last")
+keep="first"（默认） → 保留第一次出现的
+keep="last" → 保留最后一次出现的
+keep=False → 全部重复都删掉
