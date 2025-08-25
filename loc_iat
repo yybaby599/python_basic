@@ -56,3 +56,6 @@ row_index 和 col_index 都是 整数位置，不能用标签。
 iat不会报错
 有时候写df['a'][0]报错了，写df['a'].iloc[0]
 不行了写df.get('a').iat(0)
+
+还可以改值
+tree.loc[tree['id'].isin(tree['p_id']), 'type'] = 'Inner'
