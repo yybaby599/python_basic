@@ -1,0 +1,29 @@
+melt 很直观，但 pandas 有更快的方式：直接用 pd.concat 拼两列，然后统计出现次数。
+##
+def most_friends(request_accepted: pd.DataFrame) -> pd.DataFrame:
+    s = pd.concat([request_accepted["requester_id"], request_accepted["accepter_id"]])
+    res = s.value_counts().reset_index()
+    res.columns = ["id", "num"]   # 直接命名列
+    return res.head(1)
+
+例如要保留 c 作为 ID：
+
+pd.melt(df, id_vars=["c"], value_vars=["a", "b"])
+
+merge:
+2️⃣ 参数详解
+参数	作用
+right	要合并的另一个 DataFrame
+how	合并方式，可选 'inner'、'left'、'right'、'outer'
+on	用来对齐的列名，左右表列名相同
+left_on / right_on	如果左右表列名不同，用这两个分别指定
+suffixes	当左右表有同名列时，用来加后缀，默认 ('_x', '_y')
+3️⃣ 合并类型说明
+
+假设有两个表 A 和 B：
+
+how	描述
+'inner'	取 交集，只有两表都有的 key 会保留
+'left'	取 左表全部，右表匹配不到的用 NaN 填充
+'right'	取 右表全部，左表匹配不到的用 NaN 填充
+'outer'	取 并集，两表不匹配的用 NaN 填充
