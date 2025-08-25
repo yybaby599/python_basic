@@ -46,3 +46,13 @@ df = pd.DataFrame({'A':[10,20,30], 'B':[40,50,60]}, index=['x','y','z'])
 
 df.loc['x':'y', 'A']   # x到y的行，包括y → 10, 20
 df.iloc[0:2, 0]        # 第0到1行的第0列，不包括2 → 10, 20
+
+.iat 是按 行列位置 取单个值（scalar）的最快方式。
+
+语法：
+
+df.iat[row_index, col_index]
+row_index 和 col_index 都是 整数位置，不能用标签。
+iat不会报错
+有时候写df['a'][0]报错了，写df['a'].iloc[0]
+不行了写df.get('a').iat(0)
