@@ -1,0 +1,6 @@
+sales['rank'] = sales.groupby('product_id')['year'].rank(method='first')
+res = sales[sales['rank'] == 1]
+
+拿到行号
+idx = df.groupby('product_id')['year'].idxmin()
+res = df.loc[idx]
