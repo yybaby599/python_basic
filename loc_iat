@@ -59,3 +59,6 @@ iat不会报错
 
 还可以改值
 tree.loc[tree['id'].isin(tree['p_id']), 'type'] = 'Inner'
+找一个值
+pos = np.where(df['col'] == target_value)[0][0]
+
