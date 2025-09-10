@@ -1,0 +1,4 @@
+df['rolling_sum'] = df.groupby('group')['value'].transform(lambda x: x.rolling(3, min_periods=1).sum())
+允许不足窗口也计算
+之前的值还会自动写nan
+df['rolling_sum2'] = df['value'].rolling(3, min_periods=1).sum()
